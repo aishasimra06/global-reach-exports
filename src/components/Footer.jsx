@@ -42,15 +42,12 @@ const Footer = () => {
             <div className="gstin-box">
               GSTIN: 29ABCFG5126G1Z1
             </div>
-            <div className="gstin-box" style={{ marginTop: '8px' }}>
-              IEC: ABCFG5126G
-            </div>
           </div>
         </div>
 
         <div className="footer-bottom">
           <p>&copy; {new Date().getFullYear()} Global Reach Exports. All Rights Reserved.</p>
-          <p>GST Registered | IEC Certified</p>
+          <p>GST Registered</p>
         </div>
       </div>
     </footer>

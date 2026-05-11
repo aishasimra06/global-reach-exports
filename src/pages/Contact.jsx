@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { MapPin, Phone, Mail, Clock, Shield, FileCheck } from 'lucide-react';
 import './Contact.css';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -244,16 +243,10 @@ const Contact = () => {
                   <span className="cic-value">Building No. 1187/A4, KEB Road,<br />Hosapet Galli, Ward No. 4,<br />Ilkal, Dist: Bagalkot,<br />Karnataka – 587125</span>
                 </div>
 
-                <div className="cic-item">
-                  <span className="cic-label">Hours</span>
-                  <span className="cic-value">Mon – Sat: 9 AM – 6 PM</span>
-                </div>
-
                 <div className="cic-divider"></div>
 
                 <div className="cic-cert-row">
                   <span className="cic-cert">GSTIN: 29ABCFG5126G1Z1</span>
-                  <span className="cic-cert">IEC: ABCFG5126G</span>
                 </div>
               </div>
             </div>
