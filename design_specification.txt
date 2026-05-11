@@ -1,0 +1,101 @@
+### 🌐 WEBSITE DESIGN SPECIFICATION: GLOBAL REACH EXPORTS (GRE) | UPDATED GLASSMORPHISM SYSTEM
+
+**CORE OBJECTIVE:**  
+Create a high-end, "editorial" trade and logistics platform that balances industrial reliability with modern digital aesthetics. The design must evoke trust, global scale, and precision.
+
+---
+
+#### **1. COLOR PALETTE & THEME:**
+- **Primary Navy:** `#19315A`
+- **Accent Blue:** `#559EB8`
+- **Mid Blue:** `#97C9DC`
+- **Light Blue:** `#D6EAF3`
+- **Base Background:** `#F4F8FA`
+
+---
+
+#### **2. TYPOGRAPHY:**
+- **Headings:** `Unbounded`, sans-serif (Extra Bold 900 / Medium 500-600)
+- **Body Text:** `Montserrat`, sans-serif (Regular 400 / Semi-Bold 600)
+
+---
+
+#### **3. GLASSMORPHISM SYSTEM (UPDATED & CONTEXT-MAPPED)**
+
+**Base Glass Formula (Desktop):**
+```css
+background: rgba(255, 255, 255, 0.35);
+backdrop-filter: blur(22px);
+-webkit-backdrop-filter: blur(22px);
+border: 1px solid rgba(255, 255, 255, 0.5);
+border-radius: 16px;
+box-shadow: 
+  0 8px 32px rgba(25, 49, 90, 0.08),
+  inset 0 1px 0 rgba(255, 255, 255, 0.6);
+```
+
+**Glass Variants by Context:**
+| Component | Background | Blur | Border | Shadow | Use Case |
+|-----------|------------|------|--------|--------|----------|
+| **Hero Overlays** | `rgba(255,255,255,0.30)` | `24px` | `rgba(255,255,255,0.55)` | `0 12px 40px rgba(25,49,90,0.12)` | Floating text panels over imagery |
+| **Floating Cards / Badges** | `rgba(255,255,255,0.40)` | `18px` | `rgba(255,255,255,0.45)` | `0 6px 24px rgba(25,49,90,0.06)` | Tooltips, stats, badges |
+| **Navbar Pill** | `rgba(244,248,250,0.75)` | `16px` | `rgba(255,255,255,0.6)` | `0 4px 16px rgba(25,49,90,0.05)` | Sticky nav links |
+| **Mobile Glass** | `rgba(255,255,255,0.55)` | `10px` | `rgba(255,255,255,0.4)` | `0 4px 12px rgba(25,49,90,0.08)` | Mobile fallbacks |
+
+**Glass Interaction States:**
+- **Hover:** `transform: translateY(-4px); box-shadow: 0 16px 48px rgba(25,49,90,0.15); border-color: rgba(255,255,255,0.7);`
+- **Active/Pressed:** `transform: translateY(-1px); box-shadow: 0 4px 12px rgba(25,49,90,0.1);`
+- **Transition:** `all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);`
+
+**Typography on Glass:**
+- Primary text: `#19315A` (Navy) at 90-100% opacity
+- Secondary/labels: `#559EB8` (Accent Blue) at 85% opacity
+- Add `text-shadow: 0 1px 2px rgba(255,255,255,0.5)` when over dark regions
+
+---
+
+#### **4. SIGNATURE LAYOUTS (GLASS-INTEGRATED)**
+
+**🔹 Editorial Split-Hero:**
+- Left column: Clean typography on `#F4F8FA` (no glass)
+- Right column: Full-bleed imagery with blue monochrome filter
+- **Glass Application:** 
+  - Overlays (Mission, Commodities) use "Hero Overlay" formula
+  - Aligned to image grid, never overlapping key focal points
+
+**🔹 Honeycomb Interactive Grid:**
+- Base cards: Solid `#F4F8FA` with `1px solid #D6EAF3` borders (no glass)
+- **Glass Application:** Only on hover: `rgba(25,49,90,0.6)` with `blur(8px)` + white text
+
+**🔹 Editorial 3-Column Grid:**
+- Keep sharp `1px solid #e2e8f0` dividers (no glass)
+
+---
+
+#### **5. COMPONENT SPECS (UPDATED)**
+
+**🔹 Navbar:**
+- Sticky header: `background: rgba(244,248,250,0.85); backdrop-filter: blur(16px);`
+- Nav links contained in pill: `background: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.4);`
+
+**🔹 3D Interactive Buttons:**
+- Solid gradient: `linear-gradient(135deg, #1c3866 0%, #14284d 100%)`
+- Place on glass containers with `padding: 8px` to prevent visual clash
+
+**🔹 Contact Form:**
+- Inputs: `background: rgba(255,255,255,0.6); backdrop-filter: blur(8px); border: 1px solid #D6EAF3;`
+
+**🔹 Footer:**
+- Minimalist white: `background: #ffffff;` (no glass)
+
+---
+
+#### **6. PERFORMANCE & RESPONSIVENESS (GLASS-OPTIMIZED)**
+
+- **Max-width:** `1200px`
+- **Mobile (<768px):** 
+  - Reduce blur to 10px. Replace heavy glass with solid fallbacks where necessary.
+- **Fallbacks:** 
+  - Use `@supports not (backdrop-filter: blur(1px))` for solid backgrounds.
+- **Accessibility:** 
+  - Maintain WCAG AA contrast (4.5:1) for all text on glass.

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- White background -->
+  <rect width="64" height="64" fill="#ffffff" rx="6"/>
+
+  <!-- G - grey -->
+  <text x="2" y="50" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="38" fill="#8a8a8a">G</text>
+
+  <!-- R - grey -->
+  <text x="22" y="50" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="38" fill="#8a8a8a">R</text>
+
+  <!-- E - brand blue -->
+  <text x="42" y="50" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="38" fill="#1a6cb5">E</text>
+</svg>
