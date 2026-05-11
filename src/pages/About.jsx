@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Shield, FileCheck, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import './About.css';
 
 const teamMembers = [
@@ -140,16 +140,6 @@ const About = () => {
 
         </div>
       </section>
-
-      {/* ===== CERTIFICATIONS ===== */}
-      <div className="cert-block">
-        <div className="cert-item">
-          <Shield size={28} /> GST Registered &nbsp;<strong>29ABCFG5126G1Z1</strong>
-        </div>
-        <div className="cert-item">
-          <FileCheck size={28} /> IEC Code &nbsp;<strong>ABCFG5126G</strong>
-        </div>
-      </div>
 
       {/* ===== LEADERSHIP TEAM ===== */}
       <section className="about-team-section">

@@ -222,30 +222,6 @@
 }
 
 /* ===========================
-   CERTIFICATIONS
-=========================== */
-.cert-block {
-  background: linear-gradient(145deg, #e5f4fb, #c1e2f0);
-  padding: 30px 8%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 80px;
-  border-bottom: 1px solid #d0e8f5;
-  margin-bottom: 60px;
-}
-
-.cert-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: var(--dark-blue);
-  font-weight: 700;
-  font-family: var(--font-heading);
-  font-size: 14px;
-}
-
-/* ===========================
    LEADERSHIP TEAM
 =========================== */
 .about-team-section {
@@ -515,7 +491,6 @@
     grid-column: 1 / -1;
   }
   .about-hero { padding: 100px 6%; }
-  .cert-block { gap: 50px; }
   .active-member-info h3 { font-size: 2.8rem; }
 }
 
@@ -523,7 +498,6 @@
   .about-hero { padding: 80px 5%; }
   .about-editorial { padding: 60px 5%; }
   .about-editorial-grid { grid-template-columns: 1fr; gap: 40px; }
-  .cert-block { flex-direction: column; gap: 25px; padding: 40px 5%; }
   .about-team-section { padding: 60px 5%; }
   
   .team-hero-view {
