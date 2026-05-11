@@ -15,8 +15,6 @@ const Home = () => {
             GLOBAL<br />REACH<br />EXPORTS
           </h1>
 
-          <div className="editorial-subtitle">/ IEC-Registered · APEDA-Certified /</div>
-
           <p className="editorial-desc">
             Global Reach Exports is a certified Indian exporter of premium agricultural commodities and industrial materials — built on reliability, transparency, and a commitment to seamless global trade.
           </p>

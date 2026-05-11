@@ -93,6 +93,29 @@
   color: var(--dark-blue);
 }
 
+.navbar-whatsapp-glass {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #25d366;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1), inset 0 0 8px rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.navbar-whatsapp-glass:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.42);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14), inset 0 0 10px rgba(255, 255, 255, 0.55);
+}
+
 @media (max-width: 1280px) {
   .navbar-links a {
     font-size: 13px;
@@ -111,6 +134,11 @@
 @media (max-width: 991px) {
   .mobile-menu-btn {
     display: block;
+  }
+
+  .navbar-whatsapp-glass {
+    width: 36px;
+    height: 36px;
   }
 
   .navbar-links {

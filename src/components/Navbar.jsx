@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, MessageCircle } from 'lucide-react';
 import './Navbar.css';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const whatsappUrl = 'https://api.whatsapp.com/send?phone=918660338302&text=Hi';
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -24,6 +25,16 @@ const Navbar = () => {
         </nav>
 
         <div className="navbar-right">
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="navbar-whatsapp-glass"
+            aria-label="Chat on WhatsApp"
+            title="Chat on WhatsApp"
+          >
+            <MessageCircle size={18} />
+          </a>
           <button className="mobile-menu-btn" onClick={toggleMenu}>
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
