@@ -21,6 +21,43 @@ const Contact = () => {
       industrial: 'Industrial Imports',
       other: 'Other / General Inquiry',
     };
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneDigits = phone.replace(/\D/g, '');
+
+    if (!name) {
+      setFormStatus('error-name');
+      return;
+    }
+    if (!email) {
+      setFormStatus('error-email-empty');
+      return;
+    }
+    if (!emailRegex.test(email)) {
+      setFormStatus('error-email-invalid');
+      return;
+    }
+    if (!phone) {
+      setFormStatus('error-phone-empty');
+      return;
+    }
+    if (phoneDigits.length < 7 || phoneDigits.length > 15) {
+      setFormStatus('error-phone-invalid');
+      return;
+    }
+    if (!company) {
+      setFormStatus('error-company');
+      return;
+    }
+    if (!product) {
+      setFormStatus('error-product');
+      return;
+    }
+    if (!message) {
+      setFormStatus('error-message');
+      return;
+    }
+
     const productLabel = productLabels[product] ?? (product || 'Not specified');
 
     const text = [
@@ -67,6 +104,14 @@ const Contact = () => {
                 <strong>Please press SEND inside WhatsApp to complete your inquiry.</strong>
               </div>
             )}
+            {formStatus === 'error-name' && <div className="form-error">Please enter your name.</div>}
+            {formStatus === 'error-email-empty' && <div className="form-error">Please enter your email address.</div>}
+            {formStatus === 'error-email-invalid' && <div className="form-error">Please enter a valid email address.</div>}
+            {formStatus === 'error-phone-empty' && <div className="form-error">Please enter your phone number.</div>}
+            {formStatus === 'error-phone-invalid' && <div className="form-error">Please enter a valid phone number.</div>}
+            {formStatus === 'error-company' && <div className="form-error">Please enter your company name.</div>}
+            {formStatus === 'error-product' && <div className="form-error">Please select a product interest.</div>}
+            {formStatus === 'error-message' && <div className="form-error">Please enter your message.</div>}
 
             <form onSubmit={sendToWhatsApp} className="contact-form" noValidate>
               <div className="form-row">
@@ -75,7 +120,7 @@ const Contact = () => {
                   <input
                     id="name"
                     type="text"
-                    className="form-control"
+                    className={`form-control${formStatus === 'error-name' ? ' input-error' : ''}`}
                     placeholder="John Smith"
                     onChange={() => setFormStatus('')}
                   />
@@ -85,7 +130,7 @@ const Contact = () => {
                   <input
                     id="email"
                     type="email"
-                    className="form-control"
+                    className={`form-control${(formStatus === 'error-email-empty' || formStatus === 'error-email-invalid') ? ' input-error' : ''}`}
                     placeholder="you@company.com"
                     onChange={() => setFormStatus('')}
                   />
@@ -98,7 +143,7 @@ const Contact = () => {
                   <input
                     id="phone"
                     type="tel"
-                    className="form-control"
+                    className={`form-control${(formStatus === 'error-phone-empty' || formStatus === 'error-phone-invalid') ? ' input-error' : ''}`}
                     placeholder="+91 00000 00000"
                     onChange={() => setFormStatus('')}
                   />
@@ -108,15 +153,21 @@ const Contact = () => {
                   <input
                     id="company"
                     type="text"
-                    className="form-control"
+                    className={`form-control${formStatus === 'error-company' ? ' input-error' : ''}`}
                     placeholder="Your Company"
+                    onChange={() => setFormStatus('')}
                   />
                 </div>
               </div>
 
               <div className="form-group">
                 <label htmlFor="product">Product Interest</label>
-                <select id="product" className="form-control" defaultValue="">
+                <select
+                  id="product"
+                  className={`form-control${formStatus === 'error-product' ? ' input-error' : ''}`}
+                  defaultValue=""
+                  onChange={() => setFormStatus('')}
+                >
                   <option value="" disabled>Select a category</option>
                   <option value="agri">Agriculture Exports</option>
                   <option value="industrial">Industrial Imports</option>
@@ -128,7 +179,7 @@ const Contact = () => {
                 <label htmlFor="message">Your Message</label>
                 <textarea
                   id="message"
-                  className="form-control"
+                  className={`form-control${formStatus === 'error-message' ? ' input-error' : ''}`}
                   rows="5"
                   placeholder="Please describe your requirements..."
                   onChange={() => setFormStatus('')}

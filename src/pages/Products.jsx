@@ -1,10 +1,19 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { CheckCircle, ArrowRight } from 'lucide-react';
 import './Products.css';
 
 const Products = () => {
   const [activeTab, setActiveTab] = useState('exports');
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isQuoteOpen, setIsQuoteOpen] = useState(false);
+  const [quoteError, setQuoteError] = useState('');
+  const [quoteForm, setQuoteForm] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    company: ''
+  });
+  const WHATSAPP_NUMBER = '918660338302';
 
   const exportsData = [
     {
@@ -84,6 +93,70 @@ const Products = () => {
 
   const currentData = activeTab === 'exports' ? exportsData : importsData;
 
+  const openQuoteModal = (product) => {
+    setSelectedProduct(product);
+    setIsQuoteOpen(true);
+    setQuoteError('');
+  };
+
+  const closeQuoteModal = () => {
+    setIsQuoteOpen(false);
+    setSelectedProduct(null);
+    setQuoteError('');
+  };
+
+  const handleQuoteChange = (field, value) => {
+    setQuoteForm((prev) => ({ ...prev, [field]: value }));
+    setQuoteError('');
+  };
+
+  const submitQuoteToWhatsApp = (e) => {
+    e.preventDefault();
+    if (!selectedProduct) return;
+
+    const name = quoteForm.name.trim();
+    const phone = quoteForm.phone.trim();
+    const email = quoteForm.email.trim();
+    const company = quoteForm.company.trim();
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneDigits = phone.replace(/\D/g, '');
+
+    if (!name || !phone || !email) {
+      setQuoteError('Please fill Name, Phone Number, and Email.');
+      return;
+    }
+    if (!emailRegex.test(email)) {
+      setQuoteError('Please enter a valid email address.');
+      return;
+    }
+    if (phoneDigits.length < 7 || phoneDigits.length > 15) {
+      setQuoteError('Please enter a valid phone number.');
+      return;
+    }
+
+    const text = [
+      'Hi',
+      '',
+      'I would like to request a quote for this product:',
+      `Product: ${selectedProduct.title}`,
+      `Description: ${selectedProduct.desc}`,
+      'Specifications:',
+      ...selectedProduct.specs.map((item) => `- ${item}`),
+      '',
+      'My details:',
+      `Name: ${name}`,
+      `Phone: ${phone}`,
+      `Email: ${email}`,
+      `Company: ${company || 'Not provided'}`
+    ].join('\n');
+
+    const encoded = encodeURIComponent(text);
+    const whatsappURL = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encoded}`;
+    window.open(whatsappURL, '_blank');
+    closeQuoteModal();
+  };
+
   return (
     <div className="products-page fade-in">
 
@@ -161,15 +234,66 @@ const Products = () => {
                   ))}
                 </ul>
 
-                <Link to="/contact" className="btn btn-primary mt-3">
+                <button
+                  type="button"
+                  className="btn btn-primary mt-3"
+                  onClick={() => openQuoteModal(product)}
+                >
                   Request Quote <ArrowRight size={18} className="ml-2" style={{ marginLeft: '10px' }} />
-                </Link>
+                </button>
               </div>
             </div>
           ))}
         </div>
       </div>
       </div>
+
+      {isQuoteOpen && selectedProduct && (
+        <div className="quote-modal-overlay" onClick={closeQuoteModal}>
+          <div className="quote-modal" onClick={(e) => e.stopPropagation()}>
+            <button type="button" className="quote-modal-close" onClick={closeQuoteModal}>×</button>
+            <h3 className="quote-modal-title">Request Quote</h3>
+            <p className="quote-modal-product"><strong>{selectedProduct.title}</strong></p>
+            <ul className="quote-modal-specs">
+              {selectedProduct.specs.map((spec, idx) => (
+                <li key={idx}>{spec}</li>
+              ))}
+            </ul>
+
+            {quoteError && <div className="quote-modal-error">{quoteError}</div>}
+
+            <form className="quote-modal-form" onSubmit={submitQuoteToWhatsApp}>
+              <input
+                type="text"
+                placeholder="Name *"
+                value={quoteForm.name}
+                onChange={(e) => handleQuoteChange('name', e.target.value)}
+              />
+              <input
+                type="tel"
+                placeholder="Phone Number *"
+                value={quoteForm.phone}
+                onChange={(e) => handleQuoteChange('phone', e.target.value)}
+              />
+              <input
+                type="email"
+                placeholder="Email *"
+                value={quoteForm.email}
+                onChange={(e) => handleQuoteChange('email', e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="Company Name (Optional)"
+                value={quoteForm.company}
+                onChange={(e) => handleQuoteChange('company', e.target.value)}
+              />
+              <button type="submit" className="quote-modal-submit">
+                Request Quote <ArrowRight size={16} style={{ marginLeft: '8px' }} />
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

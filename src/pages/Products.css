@@ -262,6 +262,116 @@
   margin-top: 3px;
 }
 
+.quote-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 17, 34, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+  padding: 20px;
+}
+
+.quote-modal {
+  width: min(680px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 18px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2);
+  padding: 26px 24px;
+  position: relative;
+}
+
+.quote-modal-close {
+  position: absolute;
+  top: 8px;
+  right: 14px;
+  border: none;
+  background: transparent;
+  font-size: 30px;
+  color: var(--dark-blue);
+  cursor: pointer;
+  line-height: 1;
+}
+
+.quote-modal-title {
+  margin-bottom: 8px;
+  color: var(--dark-blue);
+}
+
+.quote-modal-product {
+  margin-bottom: 12px;
+  color: var(--text-dark);
+}
+
+.quote-modal-specs {
+  margin: 0 0 16px;
+  padding-left: 18px;
+  color: var(--text-dark);
+}
+
+.quote-modal-specs li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.quote-modal-error {
+  background: #fee2e2;
+  color: #991b1b;
+  border-left: 4px solid #ef4444;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.quote-modal-form {
+  display: grid;
+  gap: 12px;
+}
+
+.quote-modal-form input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #c5d8e3;
+  border-radius: 10px;
+  font-size: 14px;
+  color: var(--dark-blue);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.quote-modal-form input:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(85, 158, 184, 0.16);
+}
+
+.quote-modal-submit {
+  margin-top: 6px;
+  width: fit-content;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(145deg, #1c3866, #14284d);
+  color: #fff;
+  padding: 12px 22px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
 @media (max-width: 1280px) {
   .products-hero-title { font-size: 2.3rem; }
   .products-3d-container { padding: 60px 40px; border-radius: 30px; }
@@ -307,5 +417,12 @@
   }
   .products-hero-right {
     grid-template-columns: 1fr;
+  }
+  .quote-modal {
+    padding: 22px 16px;
+  }
+  .quote-modal-submit {
+    width: 100%;
+    justify-content: center;
   }
 }
